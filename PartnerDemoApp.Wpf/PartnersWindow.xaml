@@ -1,0 +1,244 @@
+<Window x:Class="PartnerDemoApp.Wpf.PartnersWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Партнеры"
+        Height="780"
+        Width="1180"
+        WindowStartupLocation="CenterScreen"
+        Icon="pack://siteoforigin:,,,/res/MasterPol.ico">
+    <DockPanel LastChildFill="True">
+        <Border DockPanel.Dock="Top"
+                Background="{StaticResource SecondaryBackgroundBrush}">
+            <Grid Margin="16,12">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="72" />
+                    <ColumnDefinition Width="12" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <Image
+                       Grid.Column="0"
+                       Width="72"
+                       Height="72"
+                       Source="pack://siteoforigin:,,,/res/MasterPol.ico"
+                       Stretch="Uniform" />
+
+                <StackPanel Grid.Column="2"
+                            VerticalAlignment="Center">
+                    <TextBlock FontSize="28"
+                               FontWeight="Bold"
+                               Text="Список партнеров" />
+                </StackPanel>
+            </Grid>
+        </Border>
+
+        <Border DockPanel.Dock="Bottom"
+                Background="{StaticResource MainBackgroundBrush}"
+                BorderBrush="{StaticResource BorderBrush}"
+                BorderThickness="1,1,1,0"
+                Padding="8,10,8,8">
+            <WrapPanel>
+                <Button x:Name="AddPartnerButton"
+                        Width="150"
+                        Style="{StaticResource AccentButtonStyle}"
+                        Click="AddPartnerButton_Click"
+                        Content="Добавить" />
+                <Button x:Name="EditPartnerButton"
+                        Width="150"
+                        Style="{StaticResource AccentButtonStyle}"
+                        Click="EditPartnerButton_Click"
+                        Content="Редактировать" />
+                <Button x:Name="LogoutButton"
+                        Width="90"
+                        Style="{StaticResource AccentButtonStyle}"
+                        Click="LogoutButton_Click"
+                        Content="Выйти" />
+            </WrapPanel>
+        </Border>
+
+        <Grid Margin="10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1.2*" />
+                <ColumnDefinition Width="10" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <ListBox x:Name="PartnersListBox"
+                     Grid.Column="0"
+                     SelectionMode="Single"
+                     BorderThickness="0"
+                     Background="Transparent"
+                     SelectionChanged="PartnersListBox_SelectionChanged"
+                     MouseDoubleClick="PartnersListBox_MouseDoubleClick">
+                <ListBox.ItemContainerStyle>
+                    <Style TargetType="ListBoxItem">
+                        <Setter Property="HorizontalContentAlignment"
+                                Value="Stretch" />
+                        <Setter Property="Margin"
+                                Value="0,0,0,10" />
+                    </Style>
+                </ListBox.ItemContainerStyle>
+
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Border BorderBrush="{StaticResource BorderBrush}"
+                                BorderThickness="1"
+                                CornerRadius="4"
+                                Padding="12"
+                                Background="{StaticResource MainBackgroundBrush}">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+
+                                <StackPanel>
+                                    <TextBlock FontSize="16"
+                                               FontWeight="Bold">
+                                        <Run Text="{Binding PartnerType}" />
+                                        <Run Text=" | " />
+                                        <Run Text="{Binding Name}" />
+                                    </TextBlock>
+                                    <TextBlock Margin="0,4,0,0"
+                                               Text="{Binding Director}" />
+                                    <TextBlock Margin="0,2,0,0"
+                                               Text="{Binding Phone}" />
+                                    <TextBlock Margin="0,2,0,0"
+                                               Text="{Binding Rating, StringFormat=Рейтинг: {0}}" />
+                                </StackPanel>
+
+                                <TextBlock Grid.Column="1"
+                                           Margin="12,0,0,0"
+                                           VerticalAlignment="Top"
+                                           FontSize="18"
+                                           FontWeight="Bold"
+                                           Text="{Binding DiscountText}" />
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+
+            <ScrollViewer Grid.Column="2"
+                          VerticalScrollBarVisibility="Auto">
+                <StackPanel>
+                <Border BorderBrush="{StaticResource BorderBrush}"
+                        BorderThickness="1"
+                        Padding="10"
+                        Margin="0,0,0,10">
+                    <StackPanel>
+                        <TextBlock FontSize="18"
+                                   FontWeight="Bold"
+                                   Text="История продаж" />
+                        <TextBlock x:Name="HistoryPartnerTextBlock"
+                                   Margin="0,4,0,8"
+                                   Text="Партнер не выбран" />
+                        <DataGrid x:Name="HistoryDataGrid"
+                                  IsReadOnly="True"
+                                  AutoGenerateColumns="False"
+                                  CanUserAddRows="False"
+                                  CanUserDeleteRows="False"
+                                  HeadersVisibility="Column"
+                                  GridLinesVisibility="Horizontal"
+                                  SelectionMode="Single"
+                                  SelectionUnit="FullRow"
+                                  Height="250">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Продукция"
+                                                    Binding="{Binding ProductName}"
+                                                    Width="*" />
+                                <DataGridTextColumn Header="Количество"
+                                                    Binding="{Binding Quantity}"
+                                                    Width="120" />
+                                <DataGridTextColumn Header="Дата"
+                                                    Binding="{Binding SaleDateText}"
+                                                    Width="120" />
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </StackPanel>
+                </Border>
+
+                <Border BorderBrush="{StaticResource BorderBrush}"
+                        BorderThickness="1"
+                        Padding="10">
+                    <StackPanel>
+                        <TextBlock FontSize="18"
+                                   FontWeight="Bold"
+                                   Text="Расчет материала" />
+
+                        <Grid Margin="0,10,0,0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="200" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="40" />
+                                <RowDefinition Height="40" />
+                                <RowDefinition Height="40" />
+                                <RowDefinition Height="40" />
+                                <RowDefinition Height="40" />
+                                <RowDefinition Height="44" />
+                            </Grid.RowDefinitions>
+
+                            <TextBlock Grid.Row="0"
+                                       Style="{StaticResource FormLabelTextBlockStyle}"
+                                       Text="Тип продукции" />
+                            <ComboBox x:Name="ProductTypeComboBox"
+                                      Grid.Row="0"
+                                      Grid.Column="1"
+                                      DisplayMemberPath="Name" />
+
+                            <TextBlock Grid.Row="1"
+                                       Style="{StaticResource FormLabelTextBlockStyle}"
+                                       Text="Тип материала" />
+                            <ComboBox x:Name="MaterialTypeComboBox"
+                                      Grid.Row="1"
+                                      Grid.Column="1"
+                                      DisplayMemberPath="Name" />
+
+                            <TextBlock Grid.Row="2"
+                                       Style="{StaticResource FormLabelTextBlockStyle}"
+                                       Text="Количество" />
+                            <TextBox x:Name="QuantityTextBox"
+                                     Grid.Row="2"
+                                     Grid.Column="1"
+                                     Text="1" />
+
+                            <TextBlock Grid.Row="3"
+                                       Style="{StaticResource FormLabelTextBlockStyle}"
+                                       Text="Параметр 1" />
+                            <TextBox x:Name="Parameter1TextBox"
+                                     Grid.Row="3"
+                                     Grid.Column="1"
+                                     Text="1" />
+
+                            <TextBlock Grid.Row="4"
+                                       Style="{StaticResource FormLabelTextBlockStyle}"
+                                       Text="Параметр 2" />
+                            <TextBox x:Name="Parameter2TextBox"
+                                     Grid.Row="4"
+                                     Grid.Column="1"
+                                     Text="1" />
+
+                            <Button x:Name="CalculateButton"
+                                    Grid.Row="5"
+                                    Grid.Column="1"
+                                    Width="150"
+                                    HorizontalAlignment="Left"
+                                    Style="{StaticResource AccentButtonStyle}"
+                                    Click="CalculateButton_Click"
+                                    Content="Рассчитать" />
+                        </Grid>
+
+                        <TextBlock x:Name="ResultTextBlock"
+                                   Margin="0,10,0,0"
+                                   FontSize="18"
+                                   FontWeight="Bold"
+                                   Text="Результат: -" />
+                    </StackPanel>
+                </Border>
+                </StackPanel>
+            </ScrollViewer>
+        </Grid>
+    </DockPanel>
+</Window>

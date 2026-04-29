@@ -1,0 +1,13 @@
+bin/
+obj/
+.vs/
+*.user
+*.suo
+*.db-shm
+*.db-wal
+app.db
+PartnerDemoApp.Wpf/app.db
+**/bin/
+**/obj/
+**/.vs/
+**/app.db

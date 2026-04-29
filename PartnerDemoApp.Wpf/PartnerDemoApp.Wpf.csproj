@@ -1,0 +1,44 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net9.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+    <ApplicationIcon>..\Задание демонстрационного экзамена\Мастер пол.ico</ApplicationIcon>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="CsvHelper.Excel.Core" Version="27.2.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="9.0.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="..\Задание демонстрационного экзамена\Мастер пол.ico">
+      <Link>res\MasterPol.ico</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\Задание демонстрационного экзамена\Partners_import.xlsx">
+      <Link>res\Partners_import.xlsx</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\Задание демонстрационного экзамена\Partner_products_import.xlsx">
+      <Link>res\Partner_products_import.xlsx</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\Задание демонстрационного экзамена\Products_import.xlsx">
+      <Link>res\Products_import.xlsx</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\Задание демонстрационного экзамена\Product_type_import.xlsx">
+      <Link>res\Product_type_import.xlsx</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\Задание демонстрационного экзамена\Material_type_import.xlsx">
+      <Link>res\Material_type_import.xlsx</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+</Project>

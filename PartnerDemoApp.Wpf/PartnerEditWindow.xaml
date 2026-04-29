@@ -1,0 +1,120 @@
+<Window x:Class="PartnerDemoApp.Wpf.PartnerEditWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Партнер"
+        Height="620"
+        Width="780"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterOwner"
+        Icon="pack://siteoforigin:,,,/res/MasterPol.ico">
+    <DockPanel LastChildFill="True">
+        <Border DockPanel.Dock="Top"
+                Background="{StaticResource SecondaryBackgroundBrush}"
+                Padding="16,14">
+            <TextBlock x:Name="TitleTextBlock"
+                       FontSize="24"
+                       FontWeight="Bold" />
+        </Border>
+
+        <Border DockPanel.Dock="Bottom"
+                Background="{StaticResource MainBackgroundBrush}"
+                BorderBrush="{StaticResource BorderBrush}"
+                BorderThickness="1,1,1,0"
+                Padding="8,8,8,10">
+            <StackPanel Orientation="Horizontal"
+                        HorizontalAlignment="Right">
+                <Button x:Name="SaveButton"
+                        Width="140"
+                        Style="{StaticResource AccentButtonStyle}"
+                        IsDefault="True"
+                        Click="SaveButton_Click"
+                        Content="Сохранить" />
+                <Button x:Name="CancelButton"
+                        Width="120"
+                        Style="{StaticResource AccentButtonStyle}"
+                        IsCancel="True"
+                        Click="CancelButton_Click"
+                        Content="Назад" />
+            </StackPanel>
+        </Border>
+
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
+            <Grid Margin="16">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="220" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="44" />
+                    <RowDefinition Height="44" />
+                    <RowDefinition Height="44" />
+                    <RowDefinition Height="44" />
+                    <RowDefinition Height="44" />
+                    <RowDefinition Height="44" />
+                    <RowDefinition Height="44" />
+                    <RowDefinition Height="44" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <TextBlock Grid.Row="0"
+                           Style="{StaticResource FormLabelTextBlockStyle}"
+                           Text="Тип партнера" />
+                <ComboBox x:Name="PartnerTypeComboBox"
+                          Grid.Row="0"
+                          Grid.Column="1"
+                          DisplayMemberPath="Name"
+                          SelectedValuePath="Id" />
+
+                <TextBlock Grid.Row="1"
+                           Style="{StaticResource FormLabelTextBlockStyle}"
+                           Text="Наименование" />
+                <TextBox x:Name="NameTextBox"
+                         Grid.Row="1"
+                         Grid.Column="1" />
+
+                <TextBlock Grid.Row="2"
+                           Style="{StaticResource FormLabelTextBlockStyle}"
+                           Text="Рейтинг" />
+                <TextBox x:Name="RatingTextBox"
+                         Grid.Row="2"
+                         Grid.Column="1" />
+
+                <TextBlock Grid.Row="3"
+                           Style="{StaticResource FormLabelTextBlockStyle}"
+                           Text="Адрес" />
+                <TextBox x:Name="AddressTextBox"
+                         Grid.Row="3"
+                         Grid.Column="1" />
+
+                <TextBlock Grid.Row="4"
+                           Style="{StaticResource FormLabelTextBlockStyle}"
+                           Text="ФИО директора" />
+                <TextBox x:Name="DirectorTextBox"
+                         Grid.Row="4"
+                         Grid.Column="1" />
+
+                <TextBlock Grid.Row="5"
+                           Style="{StaticResource FormLabelTextBlockStyle}"
+                           Text="Телефон" />
+                <TextBox x:Name="PhoneTextBox"
+                         Grid.Row="5"
+                         Grid.Column="1" />
+
+                <TextBlock Grid.Row="6"
+                           Style="{StaticResource FormLabelTextBlockStyle}"
+                           Text="Email" />
+                <TextBox x:Name="EmailTextBox"
+                         Grid.Row="6"
+                         Grid.Column="1" />
+
+                <TextBlock Grid.Row="7"
+                           Style="{StaticResource FormLabelTextBlockStyle}"
+                           Text="ИНН" />
+                <TextBox x:Name="InnTextBox"
+                         Grid.Row="7"
+                         Grid.Column="1"
+                         MaxLength="12" />
+            </Grid>
+        </ScrollViewer>
+    </DockPanel>
+</Window>
